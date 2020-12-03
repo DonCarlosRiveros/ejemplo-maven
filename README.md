@@ -1,7 +1,6 @@
 # Getting Started
 
-prueba sonar
-
+sonar test
 ## Windows
 
 ### Compile Code
