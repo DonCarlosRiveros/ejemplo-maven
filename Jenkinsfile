@@ -36,13 +36,13 @@ pipeline {
 				}
             }
         }
-		stage('Sonar') {
-			steps {
-				withSonarQubeEnv('http://localhost:9000/') {
-				sh 'mvn clean package sonar:sonar'
-		    	} // submitted SonarQube taskId is automatically attached to the pipeline context
-		    }
+	stage('Sonar') {
+		steps {
+			withSonarQubeEnv('http://localhost:9000/') {
+			sh 'mvn clean package sonar:sonar'
+			} // submitted SonarQube taskId is automatically attached to the pipeline context
 		}
+	}
         stage('TestApp') {
             steps {
 				dir('/HDD/Personales/Dip-DevOps/Unidad_3/Sesion_4/ejemplo-maven') {
