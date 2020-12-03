@@ -4,6 +4,7 @@ pipeline
     environment
     {
         MAVEN_HOME = '/usr/share/maven/bin'
+        scannerHome = tool 'SonarQube Scanner'
     }
     stages
     {
@@ -41,13 +42,9 @@ pipeline
         }
         stage('Sonar')
         {
-            environment
-            {
-                 scannerHome = tool 'SonarQubeScanner'
-            }
             steps
             {
-                withSonarQubeEnv('Sonarqube') {
+                withSonarQubeEnv('Sonarqube')
                 sh 'mvn clean package sonar:sonar'
             }
         }
@@ -55,12 +52,8 @@ pipeline
         {
             steps
             {
-                // Get some code from a GitHub repository
                 git 'https://github.com/DonCarlosRiveros/ejemplo-maven.git'
-
-                // Run Maven on a Unix agent.
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
-
             }
         }
         stage('TestApp')
@@ -72,4 +65,4 @@ pipeline
             }
         }
     }
- }
+}
