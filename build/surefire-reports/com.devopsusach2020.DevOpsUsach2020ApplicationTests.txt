@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.devopsusach2020.DevOpsUsach2020ApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.095 s - in com.devopsusach2020.DevOpsUsach2020ApplicationTests
