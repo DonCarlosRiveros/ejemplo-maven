@@ -6,7 +6,6 @@ pipeline {
     stages {
         stage('Compile') {
             steps {
-				dir('/HDD/Personales/Dip-DevOps/Unidad_3/Sesion_4/ejemplo-maven') {
                 echo 'Compile Code ...'
                 sh './mvnw clean compile -e'
 				}
@@ -14,7 +13,6 @@ pipeline {
         }
         stage('Test') {
             steps {	
-				dir('/HDD/Personales/Dip-DevOps/Unidad_3/Sesion_4/ejemplo-maven') {
                 echo 'Test Code ...'
                 sh './mvnw clean test -e'
 				}
@@ -22,7 +20,6 @@ pipeline {
         }
         stage('Jar') {
             steps {
-				dir('/HDD/Personales/Dip-DevOps/Unidad_3/Sesion_4/ejemplo-maven') {
                 echo 'Jar Code ...'
                 sh './mvnw clean package -e'
 				}
@@ -30,7 +27,6 @@ pipeline {
         }
         stage('Run') {
             steps {
-				dir('/HDD/Personales/Dip-DevOps/Unidad_3/Sesion_4/ejemplo-maven') {
                 echo 'Run Jar ...'
                 sh 'nohup bash mvnw spring-boot:run &'
 				}
