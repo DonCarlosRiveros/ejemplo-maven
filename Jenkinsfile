@@ -13,7 +13,7 @@ pipeline
             steps
             {
              echo 'Compile Code ...'
-             sh './mvnw clean compile -e'
+             sh 'mvn clean compile -e'
             }
         }
         stage('Test')
@@ -21,7 +21,7 @@ pipeline
             steps
             {   
                 echo 'Test Code ...'
-                sh './mvnw clean test -e'
+                sh 'mvn clean test -e'
             }
         }
         stage('Jar')
@@ -29,7 +29,7 @@ pipeline
             steps
             {
                 echo 'Jar Code ...'
-                sh './mvnw clean package -e'
+                sh 'mvn clean package -e'
             }
         }
         stage('Run')
@@ -37,7 +37,7 @@ pipeline
             steps
             {
                 echo 'Run Jar ...'
-                sh 'nohup bash mvnw spring-boot:run &'
+                sh 'nohup bash mvn spring-boot:run &'
             }
         }
         stage('Sonar')
