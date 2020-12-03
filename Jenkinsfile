@@ -36,16 +36,18 @@ pipeline {
 				}
             }
         }
-	stage('Sonar') {
-		steps {
-			withSonarQubeEnv('http://localhost:9000/') {
-			sh 'mvn clean package sonar:sonar'
-			} // submitted SonarQube taskId is automatically attached to the pipeline context
+		stage('Sonar') {
+			environment {
+			        scannerHome = tool 'SonarQubeScanner'
+			}
+			steps {
+				withSonarQubeEnv('Sonarqube') {
+				sh 'mvn clean package sonar:sonar'
+		    	} // submitted SonarQube taskId is automatically attached to the pipeline context
+		    }
 		}
-	}
         stage('TestApp') {
             steps {
-				dir('/HDD/Personales/Dip-DevOps/Unidad_3/Sesion_4/ejemplo-maven') {
                 echo 'Testing Application ...'
                 sh 'curl -X GET http://localhost:8081/rest/mscovid/test?msg=testing'
 				}
