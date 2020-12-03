@@ -4,7 +4,7 @@ pipeline
     environment
     {
         MAVEN_HOME = '/usr/share/maven/bin'
-        scannerHome = tool 'SonarQubeSonar'
+        scannerHome = tool 'Sonarqube'
     }
     stages
     {
