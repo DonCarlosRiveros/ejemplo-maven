@@ -60,7 +60,7 @@ pipeline
         {
             steps
             {
-				sh 'sleep 10'
+		sh 'sleep 15'
                 echo 'Testing Application ...'
                 sh 'curl -X GET http://localhost:8081/rest/mscovid/test?msg=testing'
             }
