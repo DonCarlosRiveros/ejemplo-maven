@@ -4,7 +4,7 @@ pipeline
     environment
     {
         MAVEN_HOME = '/usr/share/maven/bin'
-        scannerHome = tool 'SonarQubeScanner'
+        scannerHome = tool 'SonarQubeSonar'
     }
     stages
     {
@@ -12,8 +12,8 @@ pipeline
         {
             steps
             {
-             echo 'Compile Code ...'
-             sh 'mvn clean compile -e'
+                echo 'Compile Code ...'
+                sh '$MAVEN_HOME/mvn clean compile -e'
             }
         }
         stage('Test')
@@ -21,7 +21,7 @@ pipeline
             steps
             {   
                 echo 'Test Code ...'
-                sh 'mvn clean test -e'
+                sh '$MAVEN_HOME/mvn clean test -e'
             }
         }
         stage('Jar')
@@ -29,7 +29,7 @@ pipeline
             steps
             {
                 echo 'Jar Code ...'
-                sh 'mvn clean package -e'
+                sh '$MAVEN_HOME/mvn clean package -e'
             }
         }
         stage('Run')
@@ -37,15 +37,15 @@ pipeline
             steps
             {
                 echo 'Run Jar ...'
-                sh 'nohup bash mvn spring-boot:run &'
+                sh 'nohup bash $MAVEN_HOME/mvn spring-boot:run &'
             }
         }
         stage('Sonar')
         {
             steps
             {
-                withSonarQubeEnv('ScannerSonarQube')
-                sh 'mvn clean package sonar:sonar'
+                withSonarQubeEnv('Sonarqube')
+                sh '$MAVEN_HOME/mvn clean package sonar:sonar'
             }
         }
         stage('Build')
@@ -53,7 +53,7 @@ pipeline
             steps
             {
                 git 'https://github.com/DonCarlosRiveros/ejemplo-maven.git'
-                sh "mvn -Dmaven.test.failure.ignore=true clean package"
+                sh "$MAVEN_HOME/mvn -Dmaven.test.failure.ignore=true clean package"
             }
         }
         stage('TestApp')
