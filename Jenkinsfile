@@ -1,3 +1,6 @@
+2e8a2291994768467cb0f966b1c3c44813a5e076
+
+
 pipeline
 {
     agent any
@@ -32,20 +35,22 @@ pipeline
                 sh '$MAVEN_HOME/mvn clean package -e'
             }
         }
+        stage('Sonarqube')
+        {
+            steps
+            {
+    			withSonarQubeEnv('sonar')
+    			{
+					sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+    			}
+            }
+        }
         stage('Run')
         {
             steps
             {
                 echo 'Run Jar ...'
                 sh 'nohup bash $MAVEN_HOME/mvn spring-boot:run &'
-            }
-        }
-        stage('Sonar')
-        {
-            steps
-            {
-                withSonarQubeEnv('Sonarqube')
-                sh '$MAVEN_HOME/mvn clean package sonar:sonar'
             }
         }
         stage('Build')
