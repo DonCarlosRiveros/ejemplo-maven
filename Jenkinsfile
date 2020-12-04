@@ -8,7 +8,7 @@ pipeline
             steps
             {
                 echo 'Compile Code ...'
-                sh '$MAVEN_HOME/mvn clean compile -e'
+                sh '/usr/share/maven/bin/mvn clean compile -e'
             }
         }
         stage('Test')
@@ -16,7 +16,7 @@ pipeline
             steps
             {   
                 echo 'Test Code ...'
-                sh '$MAVEN_HOME/mvn clean test -e'
+                sh '/usr/share/maven/bin/mvn clean test -e'
             }
         }
         stage('Jar')
@@ -24,7 +24,7 @@ pipeline
             steps
             {
                 echo 'Jar Code ...'
-                sh '$MAVEN_HOME/mvn clean package -e'
+                sh '/usr/share/maven/bin/mvn clean package -e'
             }
         }
         stage('Sonarqube')
@@ -42,7 +42,7 @@ pipeline
             steps
             {
                 echo 'Run Jar ...'
-                sh 'nohup bash $MAVEN_HOME/mvn spring-boot:run &'
+                sh 'nohup bash /usr/share/maven/bin/mvn spring-boot:run &'
             }
         }
         stage('Build')
@@ -50,7 +50,7 @@ pipeline
             steps
             {
                 git 'https://github.com/DonCarlosRiveros/ejemplo-maven.git'
-                sh "$MAVEN_HOME/mvn -Dmaven.test.failure.ignore=true clean package"
+                sh "/usr/share/maven/bin/mvn -Dmaven.test.failure.ignore=true clean package"
             }
         }
         stage('TestApp')
