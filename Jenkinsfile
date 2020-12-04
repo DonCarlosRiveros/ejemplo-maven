@@ -8,7 +8,7 @@ pipeline
             steps
             {
                 echo 'Compile Code ...'
-                sh './mvnvw clean compile -e'
+                sh '/usr/share/maven/bin/mvn clean compile -e'
             }
         }
         stage('Sonarqube')
@@ -17,7 +17,7 @@ pipeline
             {
     		withSonarQubeEnv('sonar')
     		{
-			sh './mvnvw org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+			sh '/usr/share/maven/bin/mvnv org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
     		}
             }
 	}
