@@ -1,14 +1,6 @@
-2e8a2291994768467cb0f966b1c3c44813a5e076
-
-
 pipeline
 {
     agent any
-    environment
-    {
-        MAVEN_HOME = '/usr/share/maven/bin'
-        scannerHome = tool 'Sonarqube'
-    }
     stages
     {
         stage('Compile')
