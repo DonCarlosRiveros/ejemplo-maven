@@ -45,13 +45,5 @@ pipeline
                 sh 'nohup bash /usr/share/maven/bin/mvn spring-boot:run &'
             }
         }
-        stage('Build')
-        {
-            steps
-            {
-                git 'https://github.com/DonCarlosRiveros/ejemplo-maven.git'
-                sh "/usr/share/maven/bin/mvn -Dmaven.test.failure.ignore=true clean package"
-            }
-        }
     }
 }
