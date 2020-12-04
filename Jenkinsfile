@@ -17,7 +17,7 @@ pipeline
             {
     		withSonarQubeEnv('sonar')
     		{
-			sh '/usr/share/maven/bin/mvnv org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+			sh '/usr/share/maven/bin/mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
     		}
             }
 	}
