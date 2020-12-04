@@ -53,13 +53,5 @@ pipeline
                 sh "/usr/share/maven/bin/mvn -Dmaven.test.failure.ignore=true clean package"
             }
         }
-        stage('TestApp')
-        {
-            steps
-            {
-                echo 'Testing Application ...'
-                sh 'curl -X GET http://localhost:8081/rest/mscovid/test?msg=testing'
-            }
-        }
     }
 }
